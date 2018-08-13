@@ -32,7 +32,18 @@ class ToDoApp extends Component {
           Add Todo
         </button>
         <ul>
-          {this.props.todos.map( each => <li key={each.id}>{each.text}</li>)}
+          {this.props.todos.map( each =>
+            <li key={each.id}
+                onClick={() => {
+                  store.dispatch({
+                    type: 'TOGGLE_TODO',
+                    id: each.id,
+                  });
+                }}
+                style={{
+                  textDecoration:
+                    each.completed? 'line-through': 'none'
+                }}>{each.text}</li>)}
         </ul>
       </div>
     );
